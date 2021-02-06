@@ -6,19 +6,23 @@ export default function landing() {
   <div class="form__container">
     <div class="login__panel">
       <div class="panel__header">
-        Company name
-        <!--   IMG   -->
+       <h1 class="header"> APLIKACINIO </h1>
       </div>
-
       <div class="social__login">
-          <div>
-            FB
+          <div class="icon__wrapper">
+          <a href="#">
+          <img  class="icon" src="../assets/facebook.png" alt="facebook icon">
+          </a>
           </div>
-        <div>
-          GG
+          <div class="icon__wrapper">
+          <a href="#">
+          <img  class="icon" src="../assets/instagram_2.png"  alt="instagram icon" >
+          </a>
         </div>
-        <div>
-          TWI
+        <div class="icon__wrapper">
+        <a href="#">
+        <img  class="icon" src="../assets/google.png" alt="google icon">
+        </a>
         </div>
       </div>
       <div class="form__wrapper">
@@ -27,9 +31,8 @@ export default function landing() {
           <input class="input password__input" type="password" placeholder="Password"    value=<%= password %>> <br>
           <a class="password__revival">Forget Password?</a>
           <div class="buttons__wrapper">
-<!--            type="submit" value="Register"-->
             <button class="form__button form__button--login" value="Login"  type="button"> Login </button>
-            <input class="form__button" type="submit" value="Register">
+            <input class="form__button form__button--register " type="submit" value="Register">
           </div>
 
         </form>

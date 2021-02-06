@@ -1,13 +1,13 @@
-import swal from "sweetalert";
-const axios = require('axios')
+export default  function apiPost(path, postData) {
+   return  fetch(`${API_URL}/${path}`, {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(postData),
+        }).then(it => it.json())
+     
+      }
 
-
-export default async function sendPost  (API_URL, postData) {
-  try {
-    const res = await axios.post(API_URL, postData);
-    console.log(res.data)
-  } catch (err) {
-    console.error(err);
-    swal("Oops!", "Login inputs are invalid", "error");
-  }
-}
+export const API_URL = "https://zwzt-zadanie.netlify.app/api";
+    

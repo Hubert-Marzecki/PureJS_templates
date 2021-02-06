@@ -1,73 +1,65 @@
-import { route } from './router';
+import { route } from "./router";
 import "./styles/style.scss";
-const axios = require('axios')
-import swal from 'sweetalert';
-import landing from "./templates/landing";
-import loggedIn from "./templates/loggedIn";
+import swal from "sweetalert";
 import initTemplates from "./templates/initTemplates";
-import sendPost from "./client/post";
-
+import apiPost from './client/post';
 
 initTemplates();
-var userName;
 
-route('/', 'home', function() {
+route("/", "home", function () {
   this.username = "";
   this.password = "";
 
-  this.$on('.username__input', 'change', (e) => {
+  this.$on(".username__input", "change", (e) => {
     this.username = e.target.value;
-    userName = e.target.value;
-    this.$refresh();
   });
 
-  this.$on('.password__input', 'change', (e) => {
+  this.$on(".password__input", "change", (e) => {
     this.password = e.target.value;
-    this.$refresh();
   });
 
-
-    this.$on('.form__button--login', 'click', (e) => {
-    const postData = {
+  this.$on(".form__button--login", "click", (e) => {
+    e.preventDefault();
+    const loginFormInputs = {
       username: this.username,
-      password: this.password
-    }
-    const API_URL = "https://zwzt-zadanie.netlify.app/api/login";
-
-
-    if(postData.password === "") {
-      swal("Oops!", "Input Password", "warning");
-    } else if(postData.username === "") {
-      swal("Oops!", "Input Username", "warning");
+      password: this.password,
+    };
+    
+    if (loginFormInputs.password === "" && loginFormInputs.username === "") {
+      swal("Oops!", "Please enter login & password", "warning");
+    } else if (loginFormInputs.username === "") {
+      swal("Oops!", "Please enter username", "warning");
+    } else if (loginFormInputs.password === "") {
+      swal("Oops!", "Please enter password", "warning");
     } else {
-      axios.post(API_URL, postData)
-      .then((res) => {
-          console.log("RESPONSE RECEIVED: ", res)
-          window.location.replace("#/loggedin")
-      })
+      apiPost("login", loginFormInputs)
+      .then(data => {
+        console.log(data)
+        if(data.error){
+          swal("Oops!", data.message, "error");
+        } else {
+          localStorage.setItem('userToken', data.token);
+          window.location = "#/loggedin"
+        }
+      }) 
       .catch((err) => {
-        swal("Oops!", "Invalid password", "error");
-        console.log("AXIOS ERROR: ", err);
-      })
+        swal("Oops!", "Something went wrong, please try again later", "error");
+        console.error( err);
+      });
+
     }
-
-   
-  })
-});
-
-route('/loggedin', 'success', function() {
-  this.username = userName;
-  console.log(userName)
-});
-
-route('/ex2', 'example2', function() {
-  this.title = 'Example 2';
-  this.counter = 0;
-
-  this.$on('.my-button', 'click', () => {
-    this.counter += 1;
-    this.$refresh();
   });
 });
 
-route('*', '404', function () {});
+route("/loggedin", "success", function () {
+  
+  this.$on(".logout__button", "click", (e) => {
+  e.preventDefault();
+  localStorage.removeItem("userToken");
+  window.location = "#/"
+});
+
+}
+
+
+route("*", "404", function () {});
