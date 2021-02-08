@@ -9,7 +9,6 @@
   justify-content: center;
 }
 
-
 .form__container {
   background-color: white;
   width: 70vw;
@@ -98,6 +97,7 @@
       box-shadow: none;
       font-size: $font-size;
       font-family: $normal-font;
+      outline: none;
 
       &:focus {
         outline: none;
@@ -111,6 +111,9 @@
       @include for-tablet-landscape-up {
         font-size: $font-size;
       }
+    }
+    .input--missing {
+      color: rgb(255, 0, 0);
     }
 
     .buttons__wrapper {
@@ -130,7 +133,7 @@
         &:hover {
           cursor: pointer;
         }
-        &--login{
+        &--login {
           @include background-gradient-primary;
           box-shadow: #ababab 0 5px 10px;
           transition: all 0.2s ease;
@@ -141,7 +144,7 @@
             transition: all 0.2s ease;
           }
         }
-        &--register{
+        &--register {
           @include background-gradient-bg;
           color: white;
           transition: all 0.2s ease;

@@ -11,28 +11,28 @@ export default function landing() {
       <div class="social__login">
           <div class="icon__wrapper">
           <a href="#">
-          <img  class="icon" src="../assets/facebook.png" alt="facebook icon">
+          <img  class="icon" src="../assets/facebook.png" alt="facebook icon. Icon created by Freepik https://www.flaticon.com/authors/freepik">
           </a>
           </div>
           <div class="icon__wrapper">
           <a href="#">
-          <img  class="icon" src="../assets/instagram_2.png"  alt="instagram icon" >
+          <img  class="icon" src="../assets/instagram_2.png"  alt="instagram icon. Icon created by Freepik https://www.flaticon.com/authors/freepik" >
           </a>
         </div>
         <div class="icon__wrapper">
         <a href="#">
-        <img  class="icon" src="../assets/google.png" alt="google icon">
+        <img  class="icon" src="../assets/google.png" alt="google icon. Icon created by Freepik https://www.flaticon.com/authors/freepik">
         </a>
         </div>
       </div>
       <div class="form__wrapper">
         <form class="login__form">
-          <input class="input username__input" type="text"  placeholder="Username"     value=<%= username %>> <br>
-          <input class="input password__input" type="password" placeholder="Password"    value=<%= password %>> <br>
-          <a class="password__revival">Forget Password?</a>
+          <input class="input username__input" type="text"  placeholder="Username"  value=<%= username %>> <br>
+          <input class="input password__input" type="password" placeholder="Password" value=<%= password %>> <br>
+          <a class="password__revival">Forgot Password?</a>
           <div class="buttons__wrapper">
             <button class="form__button form__button--login" value="Login"  type="button"> Login </button>
-            <input class="form__button form__button--register " type="submit" value="Register">
+            <button class="form__button form__button--register " type="button" > Register </button>
           </div>
 
         </form>
