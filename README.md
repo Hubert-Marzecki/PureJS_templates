@@ -1,36 +1,29 @@
-# zadanie
+# ZZT Recruitment Task
 
-Cześć!  
-Do stworzenia jest prosta aplikacja w oparciu o mini-framework `PureJS`. Aplikacja powinna składać się z dwóch widoków:
-1. Home - prosty formularz z polami `username` i `password`, przycisk `submit`.
-2. Success - strona powitalna z informacją o udanej akcji.
+The application uses mini framework PureJS and allows users to login to web portal.
 
-Po przesłaniu formularza aplikacja powinna przekierować do strony success lub wyświetlić informację o błędzie.
+Technologies:
+ - PureJS Framework
+ - Fetch (Post)
+ - Local Storage
+ - redirecting
+ - creating HTML templates
+ - swal alerts - https://sweetalert.js.org/guides/
+ 
+ The astronaut image is taken from https://jsweisart.com/facebook-alegria.
+ All icons created by Freepik: https://www.flaticon.com/authors/freepik.
 
-##### Część zaawansowana
-Zmodyfikuj projekt w taki sposób, aby każda templatka była w osobnym pliku. To zadanie wymaga trochę kreatywności, być może trzeba będzie rozbudować konfigurację webpack'a, być może zmodyfikować logikę `engine.js` lub `router.js`. Wszystkie chwyty dozwolone. Cel jest taki, aby templatki były tworzone poza `index.html`.
 
-##### Rozwiązanie
-Na rozwiązanie składa się:
-- link do repozytorium
-- screenshot widoku home
+## PureJS
 
-Oceniamy:
-- działające rozwiązanie
-- czysty i dobrze napisany kod
-- minimalistyczny i estetyczny design
+The framework includes two parts:
+1. engine.js - template handler
+2. router.js - router logic
 
-## Dokumentacja PureJS
-
-Framework składa się z dwóch części
-1. `engine.js` - silnik templatek
-2. `router.js` - router i logika kontrolerów
-
-##### Dodawanie widoków
-
-Aby stworzyć widok należy:
-1. Dodać templatkę w `index.html` z odpowiednim `id`
-2. Zarejestrować widok przy pomocy metody `route`
+##### Creating views
+To create a template:
+1. Add the template in index.html with id
+2. Register view with the route
 
 ```javascript
 route('/path/to/view', 'idSelector', function() {
@@ -38,15 +31,17 @@ route('/path/to/view', 'idSelector', function() {
 })
 ```
 
-##### Logika kontrolerów
+##### Controllers logic
 
-1. `template` - interpolacja (*example 1*) - zmienne w kontrolerach są interpolowane na templatki (`<%= nazwa zmiennej %>`). Dodatkowo templatki wykonują czysty JavaScript taki jak np. pętle (`<% console.log('js is in the air!') %>`.
+1. template - Interpolation (example 1) - varibles wrapped in  (<%= name of varible %>). Can manage pure JS functions. 
+    (<% console.log('js is in the air!') %>.
 
-2. `$on` - rejestracja eventów (*example 2*) - aby podpiąć obsługę eventu należy skorzystać z metody `$on`, zgodnie z sygnaturą: `this.$on('.css-selector', 'eventType', (ev) => { /* event handler */ });`
+2. $on - event registration (example 2) - to register event use "$on", full template 
+    this.$on('.css-selector', 'eventType', (ev) => { /* event handler */ });
 
-3. `$refresh` - wymuszony rerender (*example 2*) - metoda umożliwiająca odświeżenie całego widoku np. na wypadek zmiany wartości pól.
+3. $refresh - force rerender (example 2) - rerender the whole view, can come in handy in case of change of values.
 
-## Dokumentacja API
+## API Documentation
 *Example request*
 ```
 POST https://zwzt-zadanie.netlify.app/api/login
@@ -64,7 +59,7 @@ POST https://zwzt-zadanie.netlify.app/api/login
 }
 ```
 
-Aby otrzymać komunikat o błędzie, trzeba w polu `password` wpisać `error`
+To receive an error simply type "error" in the password value.
 
 *Example request*
 ```
